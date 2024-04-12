@@ -1,63 +1,88 @@
 import * as React from "react";
-import { View, text, Image, StyleSheet, Text } from "react-native";
+import {
+  View,
+  text,
+  Image,
+  StyleSheet,
+  Text,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+  Windows,
+  Dimensions,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button } from "react-native-paper";
 import logo from "../assets/logo1.png";
+import shirt from "../assets/logo1.png";
+import jacket from "../assets/logo1.png";
+import pants from "../assets/logo1.png";
 import { TextInput } from "react-native-paper";
+import Categories from "./categories";
+import HomeScreen from "./Homescreen";
+import Logos from "../assets/logo1.png";
+
+const { width } = Dimensions.get("window");
+
 function LandingScreen(props) {
-  console.log(props);
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#E9F679",
-      }}
-    >
-      <Image source={logo} style={styles.logo} />
-      <Text style={styles.grt}>This Is a Landing Page</Text>
-      <Button
-        style={styles.logout}
-        icon="login"
-        mode="contained"
-        onPress={() => props.navigation.navigate("Login")}
+    <View style={styles.container}>
+      <Image
+        source={require("../assets/logo1.png")}
+        style={styles.image}
+      />
+      <Text style={styles.title}>Welcome to DataMiners</Text>
+      <Text style={styles.description}>
+      Adorn Yourself in Elegance: Where Every Jewel Tells a Story.
+      </Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => props.navigation.navigate("Categories")}
       >
-        LOGOUT
-      </Button>
+        <Text style={styles.buttonText}>Explore Categories</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    height: 200,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#E9F679"
+  },
+  image: {
     width: 200,
+    height: 200,
+    resizeMode: "cover",
+    marginBottom: 20,
   },
-  login: {
-    marginTop: 10,
-    width: "50%",
-  },
-  passl: {
-    marginTop: 10,
-  },
-  forgot: {
-    color: "red",
-    fontSize: 10,
-    textAlign: "right",
-  },
-  grt: {
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
     color: "#346473",
-    fontSize: 20,
-    fontWeight: "1000",
-    textAlign: "center",
+    textAlign: "center"
   },
-  logout: {
-    height: 50,
-    width: 150,
-    marginTop: 10,
+  description: {
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 20,
+    color: "white"
+  },
+  button: {
     backgroundColor: "#9BDF46",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 
